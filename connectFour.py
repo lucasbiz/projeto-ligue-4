@@ -51,7 +51,7 @@ def analiseLinhaColuna(jogador,matriz):
                 return True
             else:
                 rep = 0
-#analise de colunas 
+    #analise de colunas 
     col = 0
     rep = 0
     while col < len(matriz[0]):
@@ -70,7 +70,7 @@ def analiseLinhaColuna(jogador,matriz):
 #funcao analise diagonais
 def analiseDiag(jogador,matriz):
 
-  #analisa diagonal principal para baixo (sem contar a principal)
+    #analisa diagonal principal para baixo (sem contar a principal)
     cont = 1
     rep = 0
     while cont <len(matriz):
@@ -169,7 +169,6 @@ def game(modo):
         mostraMatriz(matrizGame)
 
         # Decidindo qual jogador começa
-
         print('Para decidir qual jogador irá iniciar faremos um sorteio... ')
         sorteio = random.randint(0,1)
         time.sleep(2)
@@ -192,8 +191,8 @@ def game(modo):
                     jogada(2,matrizGame)
                 else:
                     jogada(3,matrizGame)
-            #condicao mínima para uma vitoria é de pelo menos 7 jogadas (4 do vencedor e 3 do perdedor)
-            #inicia-se as verificacoes
+        #condicao mínima para uma vitoria é de pelo menos 7 jogadas (4 do vencedor e 3 do perdedor)
+        #inicia-se as verificacoes
             if vez >= 7:
                 if vez % 2 ==0:
                     if analiseLinhaColuna(1,matrizGame) or analiseDiag(1,matrizGame):
@@ -223,7 +222,7 @@ while jogarNovamente:
         menu = input("Digite apenas 1 ou 2 para selecionar as opções!\n")
 
 #========================= JOGADOR X JOGADOR ========================#
-    if menu == '1':  
+    if menu =='1':  
         game(1)
 #========================= JOGADOR X COMPUTADOR =====================#
     else:
