@@ -4,10 +4,10 @@ import random
 import time
 
 
+#=================== FUNCOES PARA O JOGO =================#
+
 #mostra o tabuleiro para os jogadores
 def mostraMatriz(matriz):
-    print('-'*20)    
-    print('Este é o tabuleiro da sua partida! Que vença o melhor! ')    
     print('-'*20)  
     for lin in matrizGame:
         for el in lin:
@@ -18,19 +18,23 @@ def mostraMatriz(matriz):
 
 #faz a jogada 
 def jogada(jogador,matriz):
+
     linhaJogada = len(matriz) - 1
+
+    #jogador 1
     if jogador == 1: 
         coluna = int(input('Jogador 1, escolha a coluna que deseja colocar a peça!: '))
         while linhaJogada >= 0:
             if matriz[linhaJogada][coluna] == 0:
-                matriz[linhaJogada][coluna] = 2
+                matriz[linhaJogada][coluna] = 1
                 break
             linhaJogada -=1
+    #jogador 2
     else:
         coluna = int(input('Jogador 2, escolha a coluna que deseja colocar a peça!: '))
         while linhaJogada >= 0:
             if matriz[linhaJogada][coluna] == 0:
-                matriz[linhaJogada][coluna] = 1
+                matriz[linhaJogada][coluna] = 2
                 break
             linhaJogada -=1
     mostraMatriz(matriz)
@@ -38,18 +42,9 @@ def jogada(jogador,matriz):
 
 
 #funcoes para fazer as analises de possiveis jogadas vencedoras
-def analiseLinha(jogador,matriz):
+def analiseLinhaColuna(jogador,matriz):
     if jogador == 1:
-        for linha in matriz:
-            rep = 0
-            for el in linha:
-                if el == 2:
-                    rep +=1
-                elif rep == 4:
-                    return True
-                else:
-                    rep = 0
-    else:
+    #analise de linhas jogador 1
         for linha in matriz:
             rep = 0
             for el in linha:
@@ -59,13 +54,48 @@ def analiseLinha(jogador,matriz):
                     return True
                 else:
                     rep = 0
+    #analise de colunas jogador 1
+        col = 0
+        while col < len(matriz[0]):
+            for linha in matriz:
+                if linha[col] == 1:
+                    rep +=1
+                elif rep == 4:
+                    return True
+                else:
+                    rep = 0        
+
+    else:
+    #analise de linhas jogador 2
+        for linha in matriz:
+            rep = 0
+            for el in linha:
+                if el == 2:
+                    rep +=1
+                elif rep == 4:
+                    return True
+                else:
+                    rep = 0
+    #analise de colunas jogador 2
+        col = 0
+        while col < len(matriz[0]):
+            for linha in matriz:
+                if linha[col] == 2:
+                    rep +=1
+                elif rep == 4:
+                    return True
+                else:
+                    rep = 0 
     return False
-
-def analiseColuna(matriz):
-    for linha in matriz:
-        
+#=================== FUNCOES PARA O JOGO =================#
 
 
+
+
+
+
+
+#===================INICIO CODIGO JOGO=================#
 
 jogarNovamente = True
 
@@ -101,6 +131,9 @@ while jogarNovamente:
                 matrizGame.append(linha)
                 qtdLinhas+=1
 
+
+            print('-'*20)    
+            print('Este é o tabuleiro da sua partida! Que vença o melhor! ')  
             mostraMatriz(matrizGame)
 
             # Decidindo qual jogador começa
@@ -124,12 +157,33 @@ while jogarNovamente:
                     jogada(1,matrizGame)
                 else:
                     jogada(2,matrizGame)
-                vez+=1
-
                 #condicao mínima para uma vitoria é de pelo menos 7 jogadas (4 do vencedor e 3 do perdedor)
                 #inicia-se as verificacoes
                 if vez >= 7:
+                    if vez%2 ==0:
+                        if analiseLinhaColuna(1,matrizGame):
+                            print('==== Jogador 1 venceu! ====')
+                            winner = True
+                    else:
+                        if analiseLinhaColuna(2,matrizGame):
+                            print('==== Jogador 2 venceu! ====')
+                            winner = True
+                vez+=1
+                espacosVazios-=1
+    else:
+        xxx = 0    
 
+
+
+    #pergunta se o jogador deseja reiniciar o jogo                   
+    jogarNovamente = input('Deseja jogar novamente?:\n 1 - SIM\n 2 - NAO\n ')
+    if jogarNovamente in '1simSIM':
+        jogarNovamente = True
+    elif jogarNovamente in '2naoNAO':
+        jogarNovamente = False
+    else:
+        print('Opção inválida, digite apenas 1, 2, SIM ou NAO')
+        jogarNovamente = input('Deseja jogar novamente?:\n 1 - SIM\n 2 - NAO\n ')
 
 
 
@@ -137,12 +191,10 @@ while jogarNovamente:
                         
                 
 
-            
+    
 
 
-    else:
-        xxx = 0
-
+#===================FIM CODIGO JOGO=================#
 
 
 
