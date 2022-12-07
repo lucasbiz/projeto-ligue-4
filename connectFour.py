@@ -222,7 +222,7 @@ while jogarNovamente:
             vez+=1
             espacosVazios-=1
         if espacosVazios == 0:
-            print('Nenhum dos jogadores chegaram na vitória e os espaços acabaram! EMPATE!')
+            print('Nenhum dos jogadores chegou na vitória e os espaços acabaram! EMPATE!')
 
 
 
@@ -289,7 +289,7 @@ while jogarNovamente:
             vez+=1
             espacosVazios-=1
         if espacosVazios == 0:
-            print('Nenhum dos jogadores chegaram na vitória e os espaços acabaram! EMPATE!')  
+            print('Nenhum dos jogadores chegou na vitória e os espaços acabaram! EMPATE!')  
 
 
 
