@@ -314,7 +314,7 @@ while jogarNovamente:
     
 
 
-#===================FIM CODIGO JOGO=================#
+#===================FIM CODIGO JOGO =D =================#
 
 
 
