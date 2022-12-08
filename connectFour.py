@@ -18,23 +18,37 @@ def mostraMatriz(matriz):
 
 #faz a jogada 
 def jogada(jogador,matriz):
-    linhaJogada = len(matriz) - 1
+    validacao = 0
+
+    #computador faz a jogada
     if jogador == 3:
-        time.sleep(1)
-        coluna = random.randint(0,len(matriz)-1)
-        print(f'Jogador 2 escolhe a coluna {coluna}')
-        while linhaJogada >= 0:
-            if matriz[linhaJogada][coluna] == 0:
-                matriz[linhaJogada][coluna] = 2
-                break
-            linhaJogada -=1
+        while validacao == 0:
+            time.sleep(1)
+            coluna = random.randint(0,len(matriz)-1)
+            print(f'Jogador 2 escolhe a coluna {coluna}')
+            linhaJogada = len(matriz) - 1
+            while linhaJogada >= 0:
+                if matriz[linhaJogada][coluna] == 0:
+                    matriz[linhaJogada][coluna] = 2
+                    validacao = 1
+                    break
+                linhaJogada -=1
+            print('Jogada inválida, tente novamente!')
+    #jogador faz a jogada
     else:
-        coluna = int(input(f'Jogador {jogador}, escolha a coluna que deseja colocar a peça!: '))
-        while linhaJogada >= 0:
-            if matriz[linhaJogada][coluna] == 0:
-                matriz[linhaJogada][coluna] = jogador
-                break
-            linhaJogada -=1
+        while validacao == 0:
+            coluna = int(input(f'Jogador {jogador}, escolha a coluna que deseja colocar a peça!: '))
+            while coluna < 0 or coluna > len(matriz[0]):
+                print('Número de coluna inválido, tente novamente!')
+                coluna = int(input(f'Jogador {jogador}, escolha a coluna que deseja colocar a peça!: '))
+            linhaJogada = len(matriz) - 1
+            while linhaJogada >= 0:
+                if matriz[linhaJogada][coluna] == 0:
+                    matriz[linhaJogada][coluna] = jogador
+                    validacao = 1
+                    break
+                linhaJogada -=1
+            print('Coluna cheia, tente novamente!')
     mostraMatriz(matriz)
 
 
