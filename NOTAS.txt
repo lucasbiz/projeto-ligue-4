@@ -1,0 +1,8 @@
+Professor: "Tem um bugzinho quando o pc joga na última coluna (ou em coluna inválida). a verificação das diagonais também não está 100%. podes organizar melhor em termos de OO, criar mais classes e dividir a responsabilidade das funções."
+
+METAS: 
+
+*Revisar a correção das diagonais
+*Revisar bug quando o pc joga na ultima coluna ou em coluna inválida
+*Feito isso, orientar melhor em questão de POO
+*Criar 3 objetos? Jogador 1, Jogador 2 (jogador ou pc?) e Tabuleiro?
